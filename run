@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# runit wants foreground processes. Sandstorm wants to be PID 1 in its own
+# namespace, which it accomplishes by forking. So this run script just keeps
+# running as long as sandstorm seems to be running.
+set -eu
+
+[ -r conf ] && . ./conf
+
+$SANDSTORM start
+while $SANDSTORM status
+do
+	sleep 1
+done
