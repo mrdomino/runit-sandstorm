@@ -8,7 +8,7 @@ set -eu
 [ -r conf ] && . ./conf
 
 $SANDSTORM start
-while $SANDSTORM status
+while $SANDSTORM status >/dev/null
 do
 	sleep 1
 done
